@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img"
+     aria-labelledby="favTitle favDesc" width="64" height="64">
+  <title id="favTitle">LogTimeline icon</title>
+  <desc id="favDesc">A small timeline: one horizontal line with three colored
+    event dots.</desc>
+  <rect x="2" y="2" width="60" height="60" rx="14"
+        fill="#1e293b" stroke="#475569" stroke-width="2"/>
+  <line x1="14" y1="32" x2="50" y2="32" stroke="#64748b" stroke-width="4"/>
+  <g stroke="#1e293b" stroke-width="2">
+    <circle cx="18" cy="32" r="6" fill="#22c55e"/>
+    <circle cx="32" cy="32" r="6" fill="#ef4444"/>
+    <circle cx="46" cy="32" r="6" fill="#06b6d4"/>
+  </g>
+</svg>

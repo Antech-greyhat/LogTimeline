@@ -1,0 +1,7 @@
+2026-10-08T07:38:10.100000-04:00 kali sshd[1200]: Accepted password for kali from 192.0.2.10 port 51514 ssh2
+2026-10-08T07:38:10.250000-04:00 kali sshd[1200]: pam_unix(sshd:session): session opened for user kali(uid=1000) by (uid=0)
+2026-10-08T07:39:05.300000-04:00 kali sudo:     kali : TTY=pts/0 ; PWD=/home/kali ; USER=root ; COMMAND=/usr/bin/apt update
+2026-10-08T07:39:05.350000-04:00 kali sudo: pam_unix(sudo:session): session opened for user root(uid=0) by kali(uid=1000)
+2026-10-08T07:39:51.894612-04:00 kali sudo: pam_unix(sudo:session): session closed for user root
+2026-10-08T07:40:02.000000-04:00 kali systemd-logind[400]: New session 3 of user kali.
+2026-10-08T07:45:00.000000-04:00 kali sshd[1200]: pam_unix(sshd:session): session closed for user kali
