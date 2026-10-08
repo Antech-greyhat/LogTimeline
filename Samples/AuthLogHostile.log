@@ -1,0 +1,6 @@
+2026-10-08T08:00:00-04:00 kali sshd[3000]: Failed password for [2Jadmin from 203.0.113.5 port 40000 ssh2
+2026-10-08T08:00:01-04:00 kali sudo: baduser : TTY=pts/1 ; PWD=/tmp ; USER=root ; COMMAND=/bin/sh -c echo pwned
+this line is malformed and should be skipped
+2026-10-08T08:00:03-04:00 kali sshd[3001]: Failed password for josé from 198.51.100.7 port 40001 ssh2
+Oct  8 08:00:04 kali sshd[3002]: Failed password for kali from 198.51.100.7 port 40002 ssh2
+2026-10-08T08:00:05-04:00 kali sshd[3003]: Invalid user null from 203.0.113.5 port 40003

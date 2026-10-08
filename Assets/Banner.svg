@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300" role="img"
+     aria-labelledby="bannerTitle bannerDesc" width="1200" height="300">
+  <title id="bannerTitle">LogTimeline</title>
+  <desc id="bannerDesc">LogTimeline banner: a horizontal timeline with colored
+    event nodes, above the tagline "turn auth.log into one chronological
+    security timeline".</desc>
+
+  <defs>
+    <!-- Dark slate gradient. Not pure black, so text stays comfortable and
+         the card reads well on both light and dark GitHub themes. -->
+    <linearGradient id="panel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0f172a"/>
+      <stop offset="1" stop-color="#1e293b"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Card background with a subtle border so edges are visible on dark theme. -->
+  <rect x="2" y="2" width="1196" height="296" rx="20"
+        fill="url(#panel)" stroke="#475569" stroke-width="2"/>
+
+  <!-- Wordmark. "Log" in sky accent, "Timeline" in near-white. -->
+  <text x="80" y="120" font-family="'Segoe UI', 'DejaVu Sans', sans-serif"
+        font-size="76" font-weight="700">
+    <tspan fill="#38bdf8">Log</tspan><tspan fill="#e2e8f0">Timeline</tspan>
+  </text>
+
+  <!-- Tagline in muted slate. -->
+  <text x="84" y="166" font-family="'Segoe UI', 'DejaVu Sans', sans-serif"
+        font-size="27" fill="#94a3b8">
+    Turn /var/log/auth.log into one chronological security timeline
+  </text>
+
+  <!-- Timeline motif: one horizontal line with colored event nodes. -->
+  <line x1="90" y1="235" x2="1110" y2="235" stroke="#64748b" stroke-width="3"/>
+
+  <!-- Each node is one event type; colors match the tool's text output. -->
+  <g stroke="#0f172a" stroke-width="3">
+    <circle cx="150"  cy="235" r="13" fill="#22c55e"/><!-- login success -->
+    <circle cx="340"  cy="235" r="13" fill="#ef4444"/><!-- login failure -->
+    <circle cx="530"  cy="235" r="13" fill="#eab308"/><!-- invalid user  -->
+    <circle cx="720"  cy="235" r="13" fill="#06b6d4"/><!-- sudo command   -->
+    <circle cx="910"  cy="235" r="13" fill="#3b82f6"/><!-- session opened -->
+    <circle cx="1050" cy="235" r="13" fill="#94a3b8"/><!-- session closed -->
+  </g>
+
+  <!-- Small captions under the nodes. -->
+  <g font-family="'Segoe UI', 'DejaVu Sans', sans-serif" font-size="16"
+     fill="#cbd5e1" text-anchor="middle">
+    <text x="150"  y="275">success</text>
+    <text x="340"  y="275">failure</text>
+    <text x="530"  y="275">invalid</text>
+    <text x="720"  y="275">sudo</text>
+    <text x="910"  y="275">open</text>
+    <text x="1050" y="275">close</text>
+  </g>
+</svg>

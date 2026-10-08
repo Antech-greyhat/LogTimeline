@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" role="img"
+     aria-label="Tested" width="20" height="20">
+  <title>Tested</title>
+  <circle cx="10" cy="10" r="9" fill="#16a34a"/>
+  <polyline points="5.5,10.3 8.5,13.3 14.5,6.5" fill="none" stroke="#ffffff"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

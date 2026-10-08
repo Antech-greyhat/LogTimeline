@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" role="img"
+     aria-label="Not supported yet" width="20" height="20">
+  <title>Not supported yet</title>
+  <circle cx="10" cy="10" r="9" fill="#dc2626"/>
+  <g stroke="#ffffff" stroke-width="2" stroke-linecap="round">
+    <line x1="6.5" y1="6.5" x2="13.5" y2="13.5"/>
+    <line x1="13.5" y1="6.5" x2="6.5" y2="13.5"/>
+  </g>
+</svg>
