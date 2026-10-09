@@ -64,6 +64,8 @@ ordered, UTC-normalized timeline of just the security-relevant events.
   piping into other tools.
 - **Filtering** by time window (`--since` / `--until`) and by event type
   (`--type`, repeatable).
+- **Elapsed-time gaps** with `--show-gaps`, making pauses and bursts visible
+  between consecutive events in the filtered timeline.
 - **A summary footer** — lines read, events recognized, lines skipped, time
   range, and a count per event type.
 - **Safe by design.** Read-only, no shell-outs, no network, and hostile log
@@ -132,6 +134,7 @@ python3 LogTimeline.py [options]
 | `--format {text,json}` | Output format (default `text`) | `--format json` |
 | `--output PATH` | Write to a file instead of the terminal | `--output timeline.txt` |
 | `--local` | Show times in the machine's local timezone (text output only) | `--local` |
+| `--show-gaps` | Show elapsed time since the previous event (text output only) | `--show-gaps` |
 | `--no-color` | Disable colors (also off when piped or when `NO_COLOR` is set) | `--no-color` |
 | `--version` | Print the version and exit | `--version` |
 | `-h`, `--help` | Show the full help | `--help` |
@@ -171,6 +174,11 @@ By event type:
   SshLoginFailure  5
   SshInvalidUser   1
 ```
+
+Add `--show-gaps` to put the time since the previous displayed event beside
+each row. The first row is marked `—`; later rows show intervals such as
+`+00:00:01` or `+1d02:03:04`. Gaps are calculated after filtering, so they
+describe the events visible in the current view.
 
 The same data as JSON (`--format json`) gives one object per event with the
 full schema (`TimestampUtc`, `Host`, `Program`, `EventType`, `User`,
