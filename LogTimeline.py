@@ -90,6 +90,10 @@ def build_arg_parser() -> argparse.ArgumentParser:
         help="show times in the machine's local timezone (text output only)",
     )
     parser.add_argument(
+        "--show-gaps", action="store_true",
+        help="show elapsed time since the previous event (text output only)",
+    )
+    parser.add_argument(
         "--no-color", action="store_true",
         help="disable colored output (also off automatically when the output "
              "is not a terminal or when NO_COLOR is set)",
@@ -184,6 +188,19 @@ def main(argv=None) -> int:
         sys.stderr.write("Problem with a date filter: {0}\n".format(error))
         return EXIT_PROBLEM
 
+    if since is not None and until is not None and since > until:
+        sys.stderr.write("Problem with date filters: --since must be at or before --until.\n")
+        return EXIT_PROBLEM
+
+    if args.output:
+        try:
+            same_file = os.path.exists(args.output) and os.path.samefile(args.file, args.output)
+        except OSError:
+            same_file = False
+        if same_file:
+            sys.stderr.write("Refusing to overwrite the input log with --output. Choose a different path.\n")
+            return EXIT_PROBLEM
+
     # Read and parse the log file, turning common failures into friendly text.
     try:
         all_events, log_parser = read_events(args.file)
@@ -248,7 +265,8 @@ def main(argv=None) -> int:
         rendered = format_json(ordered, summary, use_local=args.local)
     else:
         rendered = format_text(
-            ordered, summary, use_local=args.local, use_color=use_color
+            ordered, summary, use_local=args.local, use_color=use_color,
+            show_gaps=args.show_gaps,
         )
 
     # Send the result to a file or to standard output.

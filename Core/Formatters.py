@@ -15,7 +15,7 @@ named ``TimestampUtc`` and tools consuming the JSON expect a stable value.
 
 import json
 from datetime import datetime
-from typing import List
+from typing import List, Optional
 
 from Core.EventModel import Event
 from Core.Sanitizer import sanitize
@@ -83,7 +83,10 @@ def _event_details(event: Event) -> str:
     return " ".join(parts)
 
 
-def _format_event_line(event: Event, use_local: bool, use_color: bool) -> str:
+def _format_event_line(
+    event: Event, use_local: bool, use_color: bool,
+    gap: Optional[str] = None,
+) -> str:
     """Format one event as a single timeline line."""
     time_text = _format_time(event.TimestampUtc, use_local)
 
@@ -96,7 +99,21 @@ def _format_event_line(event: Event, use_local: bool, use_color: bool) -> str:
             type_column = _COLORS[color_name] + type_column + _COLORS["reset"]
 
     details = _event_details(event)
-    return "{0}  {1}  {2}".format(time_text, type_column, details).rstrip()
+    gap_column = "  {0:>12}".format(gap) if gap is not None else ""
+    return "{0}{1}  {2}  {3}".format(
+        time_text, gap_column, type_column, details
+    ).rstrip()
+
+
+def _format_gap(seconds: int) -> str:
+    """Format an elapsed interval compactly, including intervals over a day."""
+    days, remainder = divmod(seconds, 86400)
+    hours, remainder = divmod(remainder, 3600)
+    minutes, seconds = divmod(remainder, 60)
+    prefix = "{0}d".format(days) if days else ""
+    return "+{0}{1:02d}:{2:02d}:{3:02d}".format(
+        prefix, hours, minutes, seconds
+    )
 
 
 def _format_summary(summary: Summary, use_local: bool) -> List[str]:
@@ -135,9 +152,21 @@ def format_text(
     summary: Summary,
     use_local: bool = False,
     use_color: bool = False,
+    show_gaps: bool = False,
 ) -> str:
     """Render the full text timeline: one line per event, then the footer."""
-    lines = [_format_event_line(e, use_local, use_color) for e in events]
+    lines = []
+    previous = None
+    for event in events:
+        gap = None
+        if show_gaps:
+            gap = (
+                "—" if previous is None else _format_gap(
+                    int((event.TimestampUtc - previous).total_seconds())
+                )
+            )
+        lines.append(_format_event_line(event, use_local, use_color, gap))
+        previous = event.TimestampUtc
     lines.extend(_format_summary(summary, use_local))
     return "\n".join(lines)
 
