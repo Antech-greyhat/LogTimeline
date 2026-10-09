@@ -119,6 +119,36 @@ python3 LogTimeline.py --file Samples/AuthLogHostile.log
 
 ---
 
+## Updating
+
+LogTimeline does not check for updates automatically or connect to the network.
+Update it manually from the repository or download a published release. Before
+updating a clone, check `git status` and commit or save any local changes.
+
+| Update source | Steps | Best for |
+| --- | --- | --- |
+| Latest pushed code on `master` | From the project directory, run `git pull --ff-only origin master`. | Getting recent changes as soon as they are pushed. |
+| Latest published release | Download the source archive from [GitHub Releases](https://github.com/Antech-greyhat/LogTimeline/releases/latest), then replace the project files with that version. | Using a tagged release. |
+
+Check which version is installed with:
+
+```bash
+python3 LogTimeline.py --version
+```
+
+When updating through Git, the equivalent commands for selecting the newest
+available release tag are:
+
+```bash
+git fetch --tags origin
+git checkout "$(git describe --tags --abbrev=0)"
+```
+
+This checks out the release in detached-HEAD mode. Return to the current
+development branch with `git switch master`.
+
+---
+
 ## Usage
 
 ```text
